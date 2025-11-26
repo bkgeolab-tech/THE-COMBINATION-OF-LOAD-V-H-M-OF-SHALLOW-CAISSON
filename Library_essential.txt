@@ -1,0 +1,32 @@
+import sys
+import subprocess
+
+def pip_install(packages):
+    """Install a list of packages using pip."""
+    for pkg in packages:
+        print(f"Installing {pkg} ...")
+        subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+
+# Package groups
+groups = {
+    "essential": [
+        "streamlit>=1.38,<2",
+        "pandas>=2.2,<3",
+        "numpy>=1.26,<3",
+        "joblib>=1.3,<2",
+        "matplotlib>=3.8,<4",
+        "plotly>=5.0,<6"
+    ]
+}
+
+print("Select package group to install:")
+print("1 - essential")
+
+choice = input("Enter your choice (1): ").strip()
+
+if choice == "1":
+    pip_install(groups["essential"])
+else:
+    print("Invalid choice, no packages installed.")
+
+print("Done.")
